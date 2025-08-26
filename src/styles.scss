@@ -1,1 +1,90 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Joan&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+
+$bg-color: #00487C;
+$hover-color: #4BB3FD;
+$div-color: #3E6680;
+$heading-font: 'Joan', serif;
+$body-font: 'Nunito', sans-serif;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: $bg-color;
+    width: 100%;
+    height: fit-content;
+    color: rgb(254, 254, 254);
+    padding: 0.2em;
+    text-align: center;
+
+    img {
+        display: flex;
+        margin: 1.5em;
+        width: 17em;
+    }
+
+    ;
+}
+
+body {
+    font-family: $body-font;
+    color: white;
+    max-width: 2500px;
+    background-color: rgb(228, 228, 228);
+
+    .loginform {
+        background-color: $div-color;
+        width: 30em;
+        height:fit-content;
+        margin: auto;
+        margin-top: 2em;
+        box-shadow: 5px 5px 10px rgb(129, 125, 125);
+ button {
+    width: 10em;
+    margin: auto;
+            background-color: $bg-color;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 1em;
+            margin-bottom: 0.3em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: $hover-color;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            padding: 1em;
+        }
+        label {
+            margin-top: 0.5em;
+            margin-bottom: 0em;
+            font-size: 1em;
+            text-align: center;
+        }
+        input {
+            padding: 0.5em;
+            width: 60%;
+            margin: auto;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+ }
+        img {
+            width: 100%;
+            height: 18em;
+            object-fit: cover;
+        }
+    }
+
+}
