@@ -1,0 +1,98 @@
+$bg-color: #00487C;
+$hover-color: #4BB3FD;
+$div-color: #3E6680;
+$heading-font: 'Joan', serif;
+$body-font: 'Nunito', sans-serif;
+header {
+    position:fixed;
+    display: flex;
+    justify-content: space-between;
+ 
+}
+#hamburgermenu {
+    width: 3em;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#closemenu {
+    position: absolute;
+    width: 3em;
+
+    top: 0;
+    right: 0;
+}
+
+#laptopnav {
+   position: absolute;
+   font-size: 1.2em;
+    right: 0;
+    top: 0;
+    padding: 1.5em;
+  margin: auto;
+    nav {
+        li {
+            display: inline-block;
+            margin: 2em;
+        }
+    }
+}
+
+#logo {
+    width: 15em;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+
+.hamburgernav {
+    display: none;
+    background-color: $bg-color;
+}
+
+#closemenu {
+    background-color: $bg-color; }
+#hamburgermenu {
+    display: none;
+
+}
+
+.hamburgernav nav {
+    position:fixed;
+    top: 0;
+    height: 100%;
+    margin-top: 5em;
+    background-color: $bg-color;
+    right: 0;
+}
+
+.hamburgernav nav li {
+    text-decoration: none;
+    list-style: none;
+    font-size: 1.6em;
+    padding: 2em;
+
+}
+
+.hamburgernav nav li:hover, #laptopnav nav li:hover {
+
+    text-decoration: underline;
+    text-decoration-color: #4BB3FD;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 8px;
+    cursor: pointer;
+}
+
+@media all and (max-width: 730px) {
+    #laptopnav {
+        display: none;
+    }
+
+    #hamburgermenu {
+        display: block;
+    }
+}

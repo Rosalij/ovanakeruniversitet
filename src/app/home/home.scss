@@ -1,0 +1,90 @@
+$bg-color: #00487C;
+$hover-color: #4BB3FD;
+$div-color: #3E6680;
+$heading-font: 'Joan', serif;
+$body-font: 'Nunito', sans-serif;
+
+h1 {
+    font-weight: 100;
+    font-size: 2.5em;
+}
+
+p {
+    font-size: 1.1em;
+
+}
+
+article {
+    background-color: #3E6680;
+    box-shadow: 5px 5px 10px rgb(129, 125, 125);
+}
+
+article:hover {
+box-shadow: 5px 5px 10px rgb(97, 93, 93);
+cursor: pointer;
+}
+
+img {
+    width: 100%;
+    display: flex;
+}
+
+.homediv {
+    margin: auto;
+    text-align: center;
+    padding-top: 1em;
+    padding-bottom: 2em;
+
+    color: $bg-color;
+    font-family: $heading-font;
+}
+
+#navigationsdiv {
+
+    display: flex;
+    flex-direction: row;
+    gap: 6em;
+    margin: auto;
+    margin-top: 4em;
+    width: 90%;
+    max-width: 60em;
+    color: white;
+    font-family: $body-font;
+
+    h2 {
+        padding-top: 1em;
+        font-size: 1.3em;
+    }
+
+    p {
+        padding-top: 0.5em;
+        padding-bottom: 1em;
+        margin-bottom: 0;
+        font-size: 1em
+    }
+
+    p,
+    h2 {
+        padding-left: 3em;
+        padding-right: 3em;
+        background-color: $div-color;
+        font-weight: 300;
+    }
+}
+
+@media all and (max-width: 730px) {
+    h1 {
+        font-size: 25px;
+    }
+
+    p {
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+
+    #navigationsdiv {
+        flex-direction: column;
+
+    }
+
+}

@@ -1,0 +1,24 @@
+<header><img id="logo" src="images/logo.svg" alt="Ovanåker universitet">
+    <div id="laptopnav">
+        <nav>
+            <ul>
+                <li><a routerLink="/">Logga ut</a></li>
+                <li><a routerLink="/courses">Alla kurser</a></li>
+                <li><a routerLink="/schedule">Ditt ramschema</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <img id="hamburgermenu" (click)="openMenu()" src="/images/hamburger-menu-svgrepo-com.svg" alt="menu">
+  
+        <div class="hamburgernav" [style.display]="isMenuOpen ? 'block' : 'none'">
+            <img (click)="closeMenu()" id="closemenu" src="/images/cross-svgrepo-com.svg" alt="close menu">
+            <nav>
+                <ul>
+                 
+          <li><a routerLink="/courses">Alla kurser</a></li>
+          <li><a routerLink="/schedule" >Ditt ramschema</a></li>
+               <li><a routerLink="/">Logga ut</a></li>   </ul>
+            </nav>
+        </div>
+</header>
