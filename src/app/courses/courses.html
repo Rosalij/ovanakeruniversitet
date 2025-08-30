@@ -6,15 +6,24 @@
   <input matInput placeholder="Ange kursnamn eller kurskod" 
     [(ngModel)]="searchTerm" 
     (ngModelChange)="onSearch()">   
+
 </mat-form-field>
 
+<mat-form-field>
+  <mat-label>Välj ämne</mat-label>
+  <mat-select [(value)]="selectedSubject" (selectionChange)="onSubjectChange()">
+    <mat-option value="">Alla ämnen</mat-option>
+    <mat-option *ngFor="let subject of subjects" [value]="subject">
+      {{ subject }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
 
 <section class="courses-container">
     <article *ngFor="let course of paginatedCourses" class="courses">
         <h3>{{ course.courseName }}</h3>
         <p><strong>Kurskod:</strong> {{ course.courseCode }}</p>
         <p><strong>Poäng:</strong> {{ course.points }}</p>
-        <p><strong>Progression:</strong> {{ course.progression }}</p>
         <p><strong>Ämne:</strong> {{ course.subject }} ({{ course.subjectCode }})</p>
         <a [href]="course.syllabus" target="_blank">Läs kursplan</a>
     </article>
