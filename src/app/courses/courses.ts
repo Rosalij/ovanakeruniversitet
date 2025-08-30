@@ -1,36 +1,34 @@
-/*This component is made with Google Angular Material components. */
-//imports
+/*This component shows a table of courses and uses Google Angular material components to show table, filter options and pagination */ 
+
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { Course } from '../models/course';
 import { Getcourses } from '../services/getcourses';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { HeaderComponent } from '../header/header';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort, MatSortModule } from '@angular/material/sort';
-import { MatButton } from '@angular/material/button';
-
+import { MatButtonModule } from '@angular/material/button';
+import { SavedCoursesService } from '../services/savedcourses'; // ✅ added service import
 
 //component
 @Component({
   selector: 'app-courses',
-  imports: [MatButton, MatSortModule, MatTableModule, HeaderComponent, MatSelectModule, CommonModule, FormsModule, MatInputModule, MatPaginatorModule],
+  imports: [MatButtonModule, MatSortModule, MatTableModule, HeaderComponent, MatSelectModule, CommonModule,FormsModule, MatInputModule, MatPaginatorModule
+  ],
   templateUrl: './courses.html',
   styleUrls: ['./courses.scss']
 })
-
 export class Courses {
   courses: Course[] = [];
-  filteredCourses: Course[] = [];
   searchTerm: string = '';
-  paginatedCourses: Course[] = [];
   subjects: string[] = [];
   selectedSubject: string = '';
 
-  //table column names 
+  //name of columns on table
   displayedColumns: string[] = [
     'courseName',
     'courseCode',
@@ -41,71 +39,55 @@ export class Courses {
     'save'
   ];
 
-  //array for saving courses
-  savedCourses: Course[] = [];
-
-
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-//dataSource for course table
+  //dataSource used in table, using Course interface
   dataSource = new MatTableDataSource<Course>();
 
-
-  //constructor
-  constructor(private getCourses: Getcourses,
-    private cdr: ChangeDetectorRef//for angular to detect changes right away
-  ) { }
-
+  constructor(
+    private getCourses: Getcourses, //inject service Getcourses to use methods on component
+    private cdr: ChangeDetectorRef, //detect change
+    private savedCoursesService: SavedCoursesService //inject service SavedCoursessService to use methods on component
+  ) {}
 
   ngOnInit(): void {
-    //get saved courses from localstorage
-    const saved = localStorage.getItem('savedCourses');
-    this.savedCourses = saved ? JSON.parse(saved) : [];
-    //get all courses
+    //load all courses from service
     this.getCourses.getCourses().subscribe((courses) => {
       this.courses = courses;
-
-      this.dataSource = new MatTableDataSource(courses);
-
-      //enable sort + pagination at bottom of table
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-
-      //subjects dropdown for filtering courses according to subject
+      this.dataSource = new MatTableDataSource(courses); //new table
+      this.dataSource.sort = this.sort; //sorting
+      this.dataSource.paginator = this.paginator; //pagination
+      //filter subjects
       this.subjects = [...new Set(courses.map(c => c.subject))];
     });
   }
 
-  //on subject change, filter courses based on subject
+  //filter courses according to subject via dropdown menu. 
   onSubjectChange(): void {
     if (this.selectedSubject) {
+      //filter courses if subject is chosen
       this.dataSource.data = this.courses.filter(c => c.subject === this.selectedSubject);
     } else {
       this.dataSource.data = this.courses;
     }
-    this.dataSource.paginator = this.paginator; //reset pagination
+    this.dataSource.paginator = this.paginator; //reset pagination on subject change
   }
 
-  //filter datasource (courses) according to search input field
+//filter courses according to search input field value
   onSearch(): void {
     this.dataSource.filter = this.searchTerm.trim().toLowerCase();
   }
 
-//push save course to local storage if button is clicked
+  //push and save course to saved course list, using savedCoursesService methods and local storage
   addToSaved(course: Course): void {
-    //prevent duplicate
-    if (!this.savedCourses.some(c => c.courseCode === course.courseCode)) {
-      this.savedCourses.push(course);
 
-      //save to localStorage
-      localStorage.setItem('savedCourses', JSON.stringify(this.savedCourses));
-    }
-    console.log("Saved courses:", this.savedCourses);
+    this.savedCoursesService.saveCourse(course); 
+    console.log('Saved courses:', this.savedCoursesService.getSavedCourses()); 
   }
-//boolean value for showing the right button when loading courses. If course is saved in local storage, button is disabled
+
+  //boolean value if course is saved or not, to disable/enable add button
   isCourseSaved(course: Course): boolean {
-    return this.savedCourses.some(c => c.courseCode === course.courseCode);
+    return this.savedCoursesService.isCourseSaved(course.courseCode); 
   }
 }
-

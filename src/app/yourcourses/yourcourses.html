@@ -4,7 +4,7 @@
         <h2>Ditt ramschema</h2>
         <p>Här kan du se dina tillagda kurser och dina sammanlagda högskolepoäng för alla kurser.</p>
   <div class="total-points">
-            Totalt antal högskolepoäng: {{ totalPoints }}
+            Totalt antal högskolepoäng: {{ totalPoints }} hp
         </div>
         <!--Saved courses table-->
         <table mat-table [dataSource]="savedCourses" class="full-width-table">
@@ -21,7 +21,7 @@
 
             <ng-container matColumnDef="points">
                 <th mat-header-cell *matHeaderCellDef>Poäng</th>
-                <td mat-cell *matCellDef="let course">{{ course.points }}</td>
+                <td mat-cell *matCellDef="let course">{{ course.points }} hp</td>
             </ng-container>
 
             <ng-container matColumnDef="progression">
@@ -42,7 +42,7 @@
             </ng-container>
 
             <ng-container matColumnDef="actions">
-                <th mat-header-cell *matHeaderCellDef>Åtgärd</th>
+                <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let course">
                     <button mat-button class="remove-btn" (click)="removeCourse(course)">Ta bort</button>
                 </td>

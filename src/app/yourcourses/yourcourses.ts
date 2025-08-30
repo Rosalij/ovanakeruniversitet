@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { HeaderComponent } from '../header/header';
 import { MatButtonModule } from '@angular/material/button';
-
+import { SavedCoursesService } from '../services/savedcourses';
 
 @Component({
   selector: 'app-yourcourses',
@@ -15,38 +15,32 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './yourcourses.scss'
 })
 
-
 export class Yourcourses {
   savedCourses: Course[] = [];
-  displayedColumns: string[] = ['courseName',
-    'courseCode',
-    'points',
-    'progression',
+  displayedColumns: string[] = ['courseName', 
+    'courseCode', 
+    'points', 
+    'progression', 
     'subject',
-    'syllabus',
-    'actions'];
+     'syllabus', 
+     'actions'];
 
+  //inject service savedCoursesService, to call it's methods for local storage
+  constructor(private savedCoursesService: SavedCoursesService) { }
 
+  //get saved courses from local storage when initializing
   ngOnInit(): void {
-    //get saved courses in local storage
-    const saved = localStorage.getItem('savedCourses');
-    this.savedCourses = saved ? JSON.parse(saved) : [];
+    this.savedCourses = this.savedCoursesService.getSavedCourses();
   }
 
-  //get total university points for all saved courses together
+  //remove course from localstorage by coursecode suing service
+  removeCourse(course: Course): void {
+    this.savedCoursesService.removeCourse(course.courseCode);
+    this.savedCourses = this.savedCoursesService.getSavedCourses();
+  }
+
+  //sums all university points from courses to a total point score
   get totalPoints(): number {
     return this.savedCourses.reduce((sum, course) => sum + course.points, 0);
-  }
-
-  //remove course for remove button
-  removeCourse(course: Course): void {
-    //get saved courses from localStorage
-    let saved = JSON.parse(localStorage.getItem('savedCourses') || '[]');
-    //Remove the course by courseCode
-    saved = saved.filter((c: Course) => c.courseCode !== course.courseCode);
-    //save back to localStorage
-    localStorage.setItem('savedCourses', JSON.stringify(saved));
-    //update the table
-    this.savedCourses = saved;
   }
 }
