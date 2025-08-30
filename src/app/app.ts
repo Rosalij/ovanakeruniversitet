@@ -12,8 +12,4 @@ export class App {
   protected readonly title = signal('ovanakeruniversitet');
 
   constructor(private router: Router) {}
-
-  hideHeader(): boolean {
-    return this.router.url === "";
-  }
 }

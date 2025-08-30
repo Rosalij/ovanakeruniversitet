@@ -1,3 +1,5 @@
+
+//interface for courses used for HttpClient call
 export interface Course {
 courseCode: string,
 progression: string,

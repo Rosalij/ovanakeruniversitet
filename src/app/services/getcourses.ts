@@ -1,3 +1,5 @@
+/*Service for getting university courses from local file miun_courses.json, using HttpClient*/
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';

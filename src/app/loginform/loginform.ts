@@ -10,18 +10,20 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './loginform.html',
   styleUrl: './loginform.scss'
 })
-export class Loginform {
 
+export class Loginform {
   username: string = '';
   password: string = '';
 errorMsg: string = '';
 
   constructor(private router: Router) {}
 
+  //if no username or password, show error message
   navigateToHome() {
     if (!this.username || !this.password) {
       this.errorMsg = 'Felaktigt användarnamn eller lösenord';
     } else {
+      //if username and password is filled in, go to /home
       this.errorMsg = '';
       this.router.navigate(['/home']);
     }

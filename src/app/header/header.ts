@@ -14,8 +14,9 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./header.scss']
 })
 export class HeaderComponent {
+  
+  //toggle pop up menu
   isMenuOpen = false;
-
   openMenu() {
     this.isMenuOpen = true;
   }

@@ -1,4 +1,7 @@
-<header><a routerLink="/home"><img id="logo" src="images/logo.svg" alt="Ovanåker universitet"></a>
+<header>
+    <!--logo-->
+    <a routerLink="/home"><img id="logo" src="images/logo.svg" alt="Ovanåker universitet"></a>
+    <!--laptop navigation-->
     <div id="laptopnav">
         <nav>
             <ul>
@@ -10,7 +13,7 @@
     </div>
 
     <img id="hamburgermenu" (click)="openMenu()" src="/images/hamburger-menu-svgrepo-com.svg" alt="menu">
-  
+  <!-- pop-up menu for small devices, navigation-->
         <div class="hamburgernav" [style.display]="isMenuOpen ? 'block' : 'none'">
             <img (click)="closeMenu()" id="closemenu" src="/images/cross-svgrepo-com.svg" alt="close menu">
             <nav>
