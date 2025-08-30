@@ -7,13 +7,15 @@ header {
     position:fixed;
     display: flex;
     justify-content: space-between;
- 
+    z-index: 100;
+ max-width: 2500px;
 }
 #hamburgermenu {
     width: 3em;
     position: absolute;
     top: 0;
     right: 0;
+    
 }
 
 #closemenu {

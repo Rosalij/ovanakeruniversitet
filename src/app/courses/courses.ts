@@ -6,14 +6,16 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
+import { HeaderComponent } from '../header/header';
+import { MatTableModule } from '@angular/material/table';
 
 
 
 @Component({
   selector: 'app-courses',
-  imports: [MatSelectModule, CommonModule, FormsModule, MatInputModule, MatPaginatorModule],
+  imports: [MatTableModule, HeaderComponent, MatSelectModule, CommonModule, FormsModule, MatInputModule, MatPaginatorModule],
   templateUrl: './courses.html',
-  styleUrl: './courses.scss'
+ styleUrls: ['./courses.scss']
 })
 export class Courses {
   courses: Course[] = [];
@@ -22,6 +24,18 @@ export class Courses {
   paginatedCourses: Course[] = [];
   subjects: string[] = [];
   selectedSubject: string = '';
+  //table
+displayedColumns: string[] = [
+  'courseName',
+  'courseCode',
+  'points',
+  'progression',
+  'subject',
+  'syllabus',
+  'save'
+];
+savedCourses: Course[] = [];
+
 
   //pagination
   pageSize = 20;
@@ -80,8 +94,17 @@ export class Courses {
 
       //Update pagination 
       this.pageIndex = 0;
-      this.pageSize = 20;
+      this.pageSize = 10;
       this.updatePagination();
     });
   }
+
+  
+addToSaved(course: Course): void {
+  //prevent duplicate
+  if (!this.savedCourses.some(c => c.courseCode === course.courseCode)) {
+    this.savedCourses.push(course);
+  }
+  console.log("Saved courses:", this.savedCourses);
+}
 }
