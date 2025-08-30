@@ -34,12 +34,17 @@ img {
 .homediv {
     margin: auto;
     text-align: center;
-    padding-top: 1em;
+    padding-top: 9em;
     padding-bottom: 2em;
 
     color: $bg-color;
     font-family: $heading-font;
 }
+p:first-of-type {
+    padding-top:1em;
+    color: #00487C;
+}
+
 
 #navigationsdiv {
 
@@ -63,7 +68,8 @@ img {
         padding-top: 0.5em;
         padding-bottom: 1em;
         margin-bottom: 0;
-        font-size: 1em
+        font-size: 1em;
+        color: white;
     }
 
     p,
