@@ -1,5 +1,18 @@
 # Ovanakeruniversitet
 
+This project represents a fictive university website for showing and saving university courses. The project is made with TypeScript with the Angular framework. 
+A live version of the webiste is available at: https://ovanakeruniversitet.netlify.app/ 
+
+The list of courses comes from a JSON file with data of university courses from Mittuniverstitet course list as of 2023. The data is used in the project with HttpClient.
+
+The table of courses, pagination and filtering is made with Angular Material components.
+
+Option to save and remove courses and build your own course schedule is possible. Saved courses are stored in localStorage and you can add or remove courses to your personal course list.
+
+This is a Single Page Application which with the help of routing, components and services shows components on the website without webpage reload.
+
+
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.6.
 
 ## Development server

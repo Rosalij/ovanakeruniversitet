@@ -12,7 +12,7 @@ import { HeaderComponent } from '../header/header';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
-import { SavedCoursesService } from '../services/savedcourses'; // ✅ added service import
+import { SavedCoursesService } from '../services/savedcourses';
 
 //component
 @Component({
